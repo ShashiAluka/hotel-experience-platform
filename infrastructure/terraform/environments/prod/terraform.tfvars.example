@@ -1,0 +1,5 @@
+# infrastructure/terraform/environments/prod/terraform.tfvars
+# Copy this file and fill in real values — do NOT commit real values to git
+
+reservation_image_tag = "abc1234"   # always pin to a specific git SHA in prod, never "latest"
+alarm_email           = "your-email@example.com"

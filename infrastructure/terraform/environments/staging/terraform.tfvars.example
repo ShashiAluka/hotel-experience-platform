@@ -1,0 +1,5 @@
+# infrastructure/terraform/environments/staging/terraform.tfvars
+# Copy this file and fill in real values — do NOT commit real values to git
+
+reservation_image_tag = "latest"
+alarm_email           = "your-email@example.com"
