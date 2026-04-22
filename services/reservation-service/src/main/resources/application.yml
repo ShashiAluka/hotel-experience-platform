@@ -1,0 +1,64 @@
+spring:
+  application:
+    name: reservation-service
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/hxp}
+    username: ${SPRING_DATASOURCE_USERNAME:hxp_admin}
+    password: ${SPRING_DATASOURCE_PASSWORD:localpassword}
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+      connection-timeout: 30000
+      idle-timeout: 600000
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: false
+        default_schema: public
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
+hxp:
+  eventbridge:
+    bus-name: ${HXP_EVENTBRIDGE_BUS_NAME:hxp-dev-event-bus}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      show-details: when-authorized
+  metrics:
+    export:
+      cloudwatch:
+        enabled: ${CLOUDWATCH_METRICS_ENABLED:false}
+        namespace: HXP/ReservationService
+
+logging:
+  pattern:
+    console: "%d{ISO8601} %5p [%t] %c{1} - %m%n"
+  level:
+    root: INFO
+    com.hxp: DEBUG
+
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+  flyway:
+    enabled: false
+
+hxp:
+  eventbridge:
+    bus-name: local-bus

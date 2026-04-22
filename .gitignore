@@ -1,0 +1,41 @@
+# Node
+node_modules/
+dist/
+*.zip
+.env
+.env.*
+!.env.example
+
+# Java / Maven
+target/
+*.class
+*.jar
+!*-sources.jar
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.backup
+*.tfplan
+.terraform.lock.hcl
+override.tf
+override.tf.json
+
+# IDEs
+.idea/
+.vscode/
+*.iml
+.DS_Store
+
+# Build outputs
+build/
+out/
+coverage/
+.nyc_output/
+
+# Docker
+.docker/
+
+# Logs
+*.log
+logs/
